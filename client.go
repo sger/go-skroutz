@@ -11,6 +11,7 @@ import (
 type Client struct {
 	*Config
 	User       *User
+	Search     *Search
 	Categories *Categories
 }
 
@@ -19,6 +20,7 @@ func New(config *Config) *Client {
 	client := &Client{Config: config}
 	client.Categories = &Categories{client}
 	client.User = &User{client}
+	client.Search = &Search{client}
 	return client
 }
 
