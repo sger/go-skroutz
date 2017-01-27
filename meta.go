@@ -9,7 +9,17 @@ type Meta struct {
 		Manufacturer Manufacturer `json:"manufacturer,omitempty"`
 		Category     Category     `json:"category,omitempty"`
 	} `json:"strong_matches,omitempty"`
-	Pagination Pagination `json:"pagination"`
+	OrderedBy        string `json:"ordered_by,omitempty"`
+	AvailableFilters struct {
+		Filters       map[string]int64 `json:"filters,omitempty"`
+		Manufacturers map[string]int64 `json:"manufacturers,omitempty"`
+	} `json:"available_filters,omitempty"`
+	AppliedFilters struct {
+		Filters       []int64 `json:"filters,omitempty"`
+		Manufacturers []int64 `json:"manufacturers,omitempty"`
+	} `json:"applied_filters,omitempty"`
+	ShowInTiles bool       `json:"show_in_tiles,omitempty"`
+	Pagination  Pagination `json:"pagination"`
 }
 
 type Alternative struct {

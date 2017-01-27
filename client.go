@@ -5,6 +5,16 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"net/url"
+	"reflect"
+
+	"github.com/google/go-querystring/query"
+)
+
+const (
+	libraryVersion = "1"
+	defaultBaseURL = "http://api.skroutz.gr"
+	mediaType      = "application/vnd.skroutz+json; version=3.1"
 )
 
 // Client contains Config, User, Categories
@@ -13,6 +23,8 @@ type Client struct {
 	User       *User
 	Search     *Search
 	Categories *Categories
+	SKUS       *SKUS
+	Products   *Products
 }
 
 // New client.
@@ -21,12 +33,35 @@ func New(config *Config) *Client {
 	client.Categories = &Categories{client}
 	client.User = &User{client}
 	client.Search = &Search{client}
+	client.SKUS = &SKUS{client}
+	client.Products = &Products{client}
 	return client
+}
+
+// addURLOptions add the parameters for the url query
+func addURLOptions(s string, opt interface{}) (string, error) {
+	v := reflect.ValueOf(opt)
+	if v.Kind() == reflect.Ptr && v.IsNil() {
+		return s, nil
+	}
+
+	u, err := url.Parse(s)
+	if err != nil {
+		return s, err
+	}
+
+	qs, err := query.Values(opt)
+	if err != nil {
+		return s, err
+	}
+
+	u.RawQuery = qs.Encode()
+	return u.String(), nil
 }
 
 // call api request GET, POST.
 func (c *Client) call(method string, path string, in interface{}) (io.ReadCloser, error) {
-	url := "http://api.skroutz.gr" + path
+	url := defaultBaseURL + path
 
 	body, err := json.Marshal(in)
 	if err != nil {
@@ -38,7 +73,7 @@ func (c *Client) call(method string, path string, in interface{}) (io.ReadCloser
 		return nil, err
 	}
 	req.Header.Set("Authorization", "Bearer "+c.AccessToken)
-	req.Header.Set("Accept", "application/vnd.skroutz+json; version=3.1")
+	req.Header.Set("Accept", mediaType)
 	req.Header.Set("Content-Type", "application/json")
 
 	r, _, err := c.do(req)
