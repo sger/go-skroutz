@@ -1,5 +1,6 @@
 package skroutz
 
+// Autocomplete struct
 type Autocomplete struct {
 	K string `json:"k"`
 	I int64  `json:"i"`
@@ -9,6 +10,7 @@ type Autocomplete struct {
 	} `json:"d"`
 }
 
+// AutocompleteCollection struct
 type AutocompleteCollection struct {
 	Autocomplete []Autocomplete `json:"autocomplete"`
 }

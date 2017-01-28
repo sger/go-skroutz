@@ -8,7 +8,7 @@ type Config struct {
 	AccessToken string
 }
 
-// NewConfig requires accessToken
+// NewConfig requires accessToken.
 func NewConfig(accessToken string) *Config {
 	return &Config{
 		HTTPClient:  http.DefaultClient,

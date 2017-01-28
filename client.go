@@ -17,14 +17,18 @@ const (
 	mediaType      = "application/vnd.skroutz+json; version=3.1"
 )
 
-// Client contains Config, User, Categories
+// Client struct.
 type Client struct {
 	*Config
-	User       *User
-	Search     *Search
-	Categories *Categories
-	SKUS       *SKUS
-	Products   *Products
+	User          *User
+	Search        *Search
+	Categories    *Categories
+	SKUS          *SKUS
+	Products      *Products
+	FlagContent   *FlagContent
+	FilterGroups  *FilterGroups
+	Shops         *Shops
+	Manufacturers *Manufacturers
 }
 
 // New client.
@@ -35,10 +39,14 @@ func New(config *Config) *Client {
 	client.Search = &Search{client}
 	client.SKUS = &SKUS{client}
 	client.Products = &Products{client}
+	client.FlagContent = &FlagContent{client}
+	client.FilterGroups = &FilterGroups{client}
+	client.Shops = &Shops{client}
+	client.Manufacturers = &Manufacturers{client}
 	return client
 }
 
-// addURLOptions add the parameters for the url query
+// addURLOptions add the parameters for the url query.
 func addURLOptions(s string, opt interface{}) (string, error) {
 	v := reflect.ValueOf(opt)
 	if v.Kind() == reflect.Ptr && v.IsNil() {

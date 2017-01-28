@@ -2,7 +2,7 @@ package skroutz
 
 import "encoding/json"
 
-// Search client for search struct
+// Search client.
 type Search struct {
 	*Client
 }
@@ -16,6 +16,7 @@ func NewSearch(config *Config) *Search {
 	}
 }
 
+// Search query with less than 2 characters
 func (c *Search) Search(query string) (out *CategoriesCollection, err error) {
 	body, err := c.call("GET", "/search?q="+query, nil)
 	if err != nil {
@@ -27,6 +28,7 @@ func (c *Search) Search(query string) (out *CategoriesCollection, err error) {
 	return
 }
 
+// Autocomplete query with less than 2 characters
 func (c *Search) Autocomplete(query string) (out *AutocompleteCollection, err error) {
 	body, err := c.call("GET", "/autocomplete?q="+query, nil)
 	if err != nil {

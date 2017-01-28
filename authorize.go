@@ -10,14 +10,14 @@ import (
 	"strconv"
 )
 
-// AuthorizeResponse returns information about access token, token type
+// AuthorizeResponse returns information about access token, token type.
 type AuthorizeResponse struct {
 	AccessToken string  `json:"access_token"`
 	TokenType   string  `json:"token_type"`
 	Expires     float64 `json:"expires_in"`
 }
 
-// Authorize generate access_token
+// Authorize generates access_token.
 func Authorize(clientID string, clientSecret string) (*AuthorizeResponse, error) {
 	apiURL := "https://www.skroutz.gr"
 	resource := "/oauth2/token/"

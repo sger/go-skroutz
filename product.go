@@ -5,6 +5,7 @@ import (
 	"strconv"
 )
 
+// Product request output.
 type Product struct {
 	ID              int64    `json:"id"`
 	Name            string   `json:"name"`
@@ -21,21 +22,23 @@ type Product struct {
 	ImmediatePickup bool     `json:"immediate_pickup"`
 }
 
+// ProductsCollection request output.
 type ProductsCollection struct {
 	Product []Product `json:"products"`
 	Meta    Meta      `json:"meta"`
 }
 
+// SingleProduct request output.
 type SingleProduct struct {
 	Product Product `json:"product"`
 }
 
-// Products client for Product struct
+// Products client.
 type Products struct {
 	*Client
 }
 
-// NewProduct client.
+// NewProducts client.
 func NewProducts(config *Config) *Products {
 	return &Products{
 		Client: &Client{
@@ -44,6 +47,7 @@ func NewProducts(config *Config) *Products {
 	}
 }
 
+// GetSingleProduct retrieve a single product.
 func (c *Products) GetSingleProduct(productID int) (out *SingleProduct, err error) {
 	body, err := c.call("GET", "/products/"+strconv.Itoa(productID), nil)
 	if err != nil {
@@ -55,6 +59,7 @@ func (c *Products) GetSingleProduct(productID int) (out *SingleProduct, err erro
 	return
 }
 
+// SearchProducts search for products.
 func (c *Products) SearchProducts(shopID int, shopUID string) (out *ProductsCollection, err error) {
 	body, err := c.call("GET", "/shops/"+strconv.Itoa(shopID)+"/products/search?shop_uid="+shopUID, nil)
 	if err != nil {
