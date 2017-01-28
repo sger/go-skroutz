@@ -14,6 +14,7 @@ import (
 const (
 	libraryVersion = "1"
 	defaultBaseURL = "http://api.skroutz.gr"
+	authBaseURL    = "https://www.skroutz.gr"
 	mediaType      = "application/vnd.skroutz+json; version=3.1"
 )
 

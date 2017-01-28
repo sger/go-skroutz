@@ -10,16 +10,16 @@ import (
 	"strconv"
 )
 
-// AuthorizeResponse returns information about access token, token type.
-type AuthorizeResponse struct {
+// AuthorizationResponse represents an individual Skroutz authorization.
+// Skroutz API docs: https://developer.skroutz.gr/authorization/
+type AuthorizationResponse struct {
 	AccessToken string  `json:"access_token"`
 	TokenType   string  `json:"token_type"`
 	Expires     float64 `json:"expires_in"`
 }
 
-// Authorize generates access_token.
-func Authorize(clientID string, clientSecret string) (*AuthorizeResponse, error) {
-	apiURL := "https://www.skroutz.gr"
+// Authorization requires clientID and clientSecret request one from http://skroutz.it/API_access.
+func Authorization(clientID string, clientSecret string) (*AuthorizationResponse, error) {
 	resource := "/oauth2/token/"
 	data := url.Values{}
 	data.Set("client_id", clientID)
@@ -27,7 +27,7 @@ func Authorize(clientID string, clientSecret string) (*AuthorizeResponse, error)
 	data.Set("grant_type", "client_credentials")
 	data.Set("scope", "public")
 
-	u, _ := url.ParseRequestURI(apiURL)
+	u, _ := url.ParseRequestURI(authBaseURL)
 	u.Path = resource
 	urlStr := fmt.Sprintf("%v", u)
 
@@ -53,12 +53,12 @@ func Authorize(clientID string, clientSecret string) (*AuthorizeResponse, error)
 		return nil, err
 	}
 
-	var result AuthorizeResponse
-	err = json.Unmarshal(body, &result)
+	var response AuthorizationResponse
+	err = json.Unmarshal(body, &response)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return &result, nil
+	return &response, nil
 }

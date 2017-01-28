@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	resp, err := skroutz.Authorize("", "")
+	resp, err := skroutz.Authorization("", "")
 	if err != nil {
 		fmt.Println(err)
 	}
