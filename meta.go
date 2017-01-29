@@ -5,9 +5,9 @@ type GetMetaOutput struct {
 	Q             string        `json:"q,omitempty"`
 	Alternatives  []Alternative `json:"alternatives,omitempty"`
 	StrongMatches struct {
-		SKU               SKU               `json:"sku,omitempty"`
-		Manufacturer      Manufacturer      `json:"manufacturer,omitempty"`
-		GetCategoryOutput GetCategoryOutput `json:"category,omitempty"`
+		SKU               GetSKUOutput          `json:"sku,omitempty"`
+		Manufacturer      GetManufacturerOutput `json:"manufacturer,omitempty"`
+		GetCategoryOutput GetCategoryOutput     `json:"category,omitempty"`
 	} `json:"strong_matches,omitempty"`
 	OrderedBy        string `json:"ordered_by,omitempty"`
 	AvailableFilters struct {

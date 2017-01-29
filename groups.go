@@ -5,20 +5,20 @@ import (
 	"strconv"
 )
 
-// Group request output.
-type Group struct {
+// GetGroupsOutput request output.
+type GetGroupsOutput struct {
 	ID    float64 `json:"id"`
 	Name  string  `json:"name"`
 	Order float64 `json:"order"`
 }
 
-// GroupCollection request output.
-type GroupCollection struct {
-	Group []Group `json:"groups"`
+// GetGroupsCollectionOutput request output.
+type GetGroupsCollectionOutput struct {
+	Groups []GetGroupsOutput `json:"groups"`
 }
 
-// FilterGroup request output.
-type FilterGroup struct {
+// GetFilterGroupOutput request output.
+type GetFilterGroupOutput struct {
 	ID         int64  `json:"id"`
 	Name       string `json:"name"`
 	Active     bool   `json:"active"`
@@ -30,10 +30,10 @@ type FilterGroup struct {
 	FilterType int    `json:"filter_type"`
 }
 
-// FilterGroupCollection request output.
-type FilterGroupCollection struct {
-	FilterGroup   []FilterGroup `json:"filter_groups"`
-	GetMetaOutput GetMetaOutput `json:"meta"`
+// GetFilterGroupCollectionOutput request output.
+type GetFilterGroupCollectionOutput struct {
+	FilterGroups  []GetFilterGroupOutput `json:"filter_groups"`
+	GetMetaOutput GetMetaOutput          `json:"meta"`
 }
 
 // FilterGroups client.
@@ -51,7 +51,7 @@ func NewFilterGroups(config *Config) *FilterGroups {
 }
 
 // GetFilterGroups list FilterGroups.
-func (c *FilterGroups) GetFilterGroups(categoryID int) (out *FilterGroupCollection, err error) {
+func (c *FilterGroups) GetFilterGroups(categoryID int) (out *GetFilterGroupCollectionOutput, err error) {
 	u := "/categories/" + strconv.Itoa(categoryID) + "/filter_groups"
 	body, err := c.call("GET", u, nil)
 	if err != nil {

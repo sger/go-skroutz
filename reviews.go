@@ -1,7 +1,7 @@
 package skroutz
 
-// Review request output.
-type Review struct {
+// GetReviewOutput request output.
+type GetReviewOutput struct {
 	ID                int64  `json:"id"`
 	UserID            int64  `json:"user_id"`
 	Review            string `json:"review"`
@@ -15,24 +15,24 @@ type Review struct {
 	Helpful           bool   `json:"helpful"`
 }
 
-// ReviewsCollection request output.
-type ReviewsCollection struct {
-	Review        []Review      `json:"reviews"`
-	GetMetaOutput GetMetaOutput `json:"meta"`
+// GetReviewsCollectionOutput request output.
+type GetReviewsCollectionOutput struct {
+	Reviews       []GetReviewOutput `json:"reviews"`
+	GetMetaOutput GetMetaOutput     `json:"meta"`
 }
 
-// SKUReviewVote request output.
-type SKUReviewVote struct {
-	ID          int64  `json:"id"`
-	SKUReviewID int64  `json:"sku_review_id"`
-	UserID      int64  `json:"user_id"`
-	Helpful     bool   `json:"helpful"`
-	CreatedAt   string `json:"created_at"`
-	Review      Review `json:"sku_review"`
+// GetSKUReviewVoteOutput request output.
+type GetSKUReviewVoteOutput struct {
+	ID          int64           `json:"id"`
+	SKUReviewID int64           `json:"sku_review_id"`
+	UserID      int64           `json:"user_id"`
+	Helpful     bool            `json:"helpful"`
+	CreatedAt   string          `json:"created_at"`
+	Review      GetReviewOutput `json:"sku_review"`
 }
 
 // SKUReviewFlag request output.
-type SKUReviewFlag struct {
+type GetSKUReviewFlagOutput struct {
 	ID            int64  `json:"id"`
 	FlaggableID   int64  `json:"flaggable_id"`
 	FlaggableType string `json:"flaggable_type"`

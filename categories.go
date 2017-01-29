@@ -107,7 +107,7 @@ func (c *Categories) GetChildrenCategories(categoryID int) (out *GetCategoriesCo
 }
 
 // GetCategorySpecifications list a category's specifications.
-func (c *Categories) GetCategorySpecifications(categoryID int) (out *SpecificationCollection, err error) {
+func (c *Categories) GetCategorySpecifications(categoryID int) (out *GetSpecificationCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/specifications", nil)
 	if err != nil {
 		return
@@ -119,7 +119,7 @@ func (c *Categories) GetCategorySpecifications(categoryID int) (out *Specificati
 }
 
 // GetCategorySpecificationsByGroup list a category's specifications.
-func (c *Categories) GetCategorySpecificationsByGroup(categoryID int) (out *SpecificationGroupCollection, err error) {
+func (c *Categories) GetCategorySpecificationsByGroup(categoryID int) (out *GetSpecificationGroupCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/specifications?include=group", nil)
 	if err != nil {
 		return
@@ -131,7 +131,7 @@ func (c *Categories) GetCategorySpecificationsByGroup(categoryID int) (out *Spec
 }
 
 // GetCategoryManufacturers list a category's manufacturers.
-func (c *Categories) GetCategoryManufacturers(categoryID int) (out *ManufacturersCollection, err error) {
+func (c *Categories) GetCategoryManufacturers(categoryID int) (out *GetManufacturersCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/manufacturers", nil)
 	if err != nil {
 		return
@@ -143,7 +143,7 @@ func (c *Categories) GetCategoryManufacturers(categoryID int) (out *Manufacturer
 }
 
 // GetCategoryFavorites list a category's favorites.Requires user token with the 'favorites' permission.
-func (c *Categories) GetCategoryFavorites(categoryID int) (out *ManufacturersCollection, err error) {
+func (c *Categories) GetCategoryFavorites(categoryID int) (out *GetManufacturersCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/favorites", nil)
 	if err != nil {
 		return

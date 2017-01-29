@@ -19,8 +19,8 @@ func NewShops(config *Config) *Shops {
 	}
 }
 
-// Shop request output.
-type Shop struct {
+// GetShopOutput request output.
+type GetShopOutput struct {
 	ID                 int64                  `json:"id"`
 	Name               string                 `json:"name"`
 	Link               string                 `json:"link"`
@@ -37,19 +37,19 @@ type Shop struct {
 	TopPositiveReasons []string               `json:"top_positive_reasons"`
 }
 
-// ShopsCollection request output.
-type ShopsCollection struct {
-	Shop          []Shop        `json:"shops"`
-	GetMetaOutput GetMetaOutput `json:"meta"`
+// GetShopsCollectionOutput request output.
+type GetShopsCollectionOutput struct {
+	Shops         []GetShopOutput `json:"shops"`
+	GetMetaOutput GetMetaOutput   `json:"meta"`
 }
 
-// SingleShop request output.
-type SingleShop struct {
-	Shop Shop `json:"shop"`
+// GetSingleShopOutput request output.
+type GetSingleShopOutput struct {
+	Shop GetShopOutput `json:"shop"`
 }
 
-// ShopReview request output.
-type ShopReview struct {
+// GetShopReviewOutput request output.
+type GetShopReviewOutput struct {
 	ID        int64    `json:"id"`
 	UserID    int64    `json:"user_id"`
 	Review    string   `json:"review"`
@@ -60,14 +60,14 @@ type ShopReview struct {
 	Reasons   []string `json:"reasons"`
 }
 
-// ShopReviewsCollection requets output.
-type ShopReviewsCollection struct {
-	ShopReview    []ShopReview  `json:"reviews"`
-	GetMetaOutput GetMetaOutput `json:"meta"`
+// GetShopReviewsCollectionOutput requets output.
+type GetShopReviewsCollectionOutput struct {
+	ShopReviews   []GetShopReviewOutput `json:"reviews"`
+	GetMetaOutput GetMetaOutput         `json:"meta"`
 }
 
-// Location request output.
-type Location struct {
+// GetLocationOutput request output.
+type GetLocationOutput struct {
 	ID          int64    `json:"id"`
 	Headquarter bool     `json:"headquarter"`
 	Phones      []string `json:"phones"`
@@ -81,9 +81,9 @@ type Location struct {
 	Address     Address  `json:"address"`
 }
 
-// SingleShopLocation request output.
-type SingleShopLocation struct {
-	Location Location `json:"location"`
+// GetSingleShopLocationOutput request output.
+type GetSingleShopLocationOutput struct {
+	Location GetLocationOutput `json:"location"`
 }
 
 // Address request output.
@@ -97,14 +97,14 @@ type Address struct {
 	Country      string `json:"country"`
 }
 
-// LocationsCollection request output.
-type LocationsCollection struct {
-	Location      []Location    `json:"locations"`
-	GetMetaOutput GetMetaOutput `json:"meta"`
+// GetLocationsCollectionOutput request output.
+type GetLocationsCollectionOutput struct {
+	Locations     []GetLocationOutput `json:"locations"`
+	GetMetaOutput GetMetaOutput       `json:"meta"`
 }
 
 // GetSingleShop retrieve a single shop.
-func (c *Shops) GetSingleShop(shopID int) (out *SingleShop, err error) {
+func (c *Shops) GetSingleShop(shopID int) (out *GetSingleShopOutput, err error) {
 	u := "/shops/" + strconv.Itoa(shopID)
 	body, err := c.call("GET", u, nil)
 	if err != nil {
@@ -117,7 +117,7 @@ func (c *Shops) GetSingleShop(shopID int) (out *SingleShop, err error) {
 }
 
 // GetShopReviews retrieve a shop's reviews.
-func (c *Shops) GetShopReviews(shopID int, sq *GetSearchQueryInput) (out *ShopReviewsCollection, err error) {
+func (c *Shops) GetShopReviews(shopID int, sq *GetSearchQueryInput) (out *GetShopReviewsCollectionOutput, err error) {
 	u := "/shops/" + strconv.Itoa(shopID) + "/reviews"
 	u, err = addURLOptions(u, sq)
 	if err != nil {
@@ -134,7 +134,7 @@ func (c *Shops) GetShopReviews(shopID int, sq *GetSearchQueryInput) (out *ShopRe
 }
 
 // GetShopLocations list shop locations.
-func (c *Shops) GetShopLocations(shopID int, sq *GetSearchQueryInput) (out *LocationsCollection, err error) {
+func (c *Shops) GetShopLocations(shopID int, sq *GetSearchQueryInput) (out *GetLocationsCollectionOutput, err error) {
 	u := "/shops/" + strconv.Itoa(shopID) + "/locations"
 	u, err = addURLOptions(u, sq)
 	if err != nil {
@@ -151,7 +151,7 @@ func (c *Shops) GetShopLocations(shopID int, sq *GetSearchQueryInput) (out *Loca
 }
 
 // GetSingleShopLocation retrieve a single shop location.
-func (c *Shops) GetSingleShopLocation(shopID int, locationID int, sq *GetSearchQueryInput) (out *SingleShopLocation, err error) {
+func (c *Shops) GetSingleShopLocation(shopID int, locationID int, sq *GetSearchQueryInput) (out *GetSingleShopLocationOutput, err error) {
 	u := "/shops/" + strconv.Itoa(shopID) + "/locations/" + strconv.Itoa(locationID)
 	u, err = addURLOptions(u, sq)
 	if err != nil {
@@ -168,7 +168,7 @@ func (c *Shops) GetSingleShopLocation(shopID int, locationID int, sq *GetSearchQ
 }
 
 // SearchShop search for shops
-func (c *Shops) SearchShop(sq *GetSearchQueryInput) (out *ShopsCollection, err error) {
+func (c *Shops) SearchShop(sq *GetSearchQueryInput) (out *GetShopsCollectionOutput, err error) {
 	u := "/shops/search"
 	u, err = addURLOptions(u, sq)
 	if err != nil {
