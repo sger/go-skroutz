@@ -34,7 +34,7 @@ type SingleManufacturer struct {
 // ManufacturersCollection request output.
 type ManufacturersCollection struct {
 	Specification []Specification `json:"manufacturers"`
-	Meta          Meta            `json:"meta"`
+	GetMetaOutput GetMetaOutput   `json:"meta"`
 }
 
 // GetManufacturers list manufacturers.
@@ -64,7 +64,7 @@ func (c *Manufacturers) GetSingleManufacturer(manufacturerID int) (out *SingleMa
 }
 
 // GetManufacturersCategories retrieve a manufacturer's categories.
-func (c *Manufacturers) GetManufacturersCategories(manufacturerID int) (out *CategoriesCollection, err error) {
+func (c *Manufacturers) GetManufacturersCategories(manufacturerID int) (out *GetCategoriesCollectionOutput, err error) {
 	u := "/manufacturers/" + strconv.Itoa(manufacturerID) + "/categories"
 	body, err := c.call("GET", u, nil)
 	if err != nil {

@@ -26,7 +26,7 @@ type Client struct {
 	Categories    *Categories
 	SKUS          *SKUS
 	Products      *Products
-	FlagContent   *FlagContent
+	FlagsContent  *FlagsContent
 	FilterGroups  *FilterGroups
 	Shops         *Shops
 	Manufacturers *Manufacturers
@@ -40,7 +40,7 @@ func New(config *Config) *Client {
 	client.Search = &Search{client}
 	client.SKUS = &SKUS{client}
 	client.Products = &Products{client}
-	client.FlagContent = &FlagContent{client}
+	client.FlagsContent = &FlagsContent{client}
 	client.FilterGroups = &FilterGroups{client}
 	client.Shops = &Shops{client}
 	client.Manufacturers = &Manufacturers{client}

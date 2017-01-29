@@ -1,7 +1,7 @@
 package skroutz
 
-// SearchQuery request output.
-type SearchQuery struct {
+// GetSearchQueryInput request input.
+type GetSearchQueryInput struct {
 	Q               string   `url:"q,omitempty"`
 	ManufacturerIDS []string `url:"manufacturer_ids,brackets"`
 	FilterIDS       []string `url:"filter_ids,brackets"`

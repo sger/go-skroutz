@@ -17,7 +17,7 @@ func NewSearch(config *Config) *Search {
 }
 
 // Search query with less than 2 characters
-func (c *Search) Search(query string) (out *CategoriesCollection, err error) {
+func (c *Search) Search(query string) (out *GetCategoriesCollectionOutput, err error) {
 	body, err := c.call("GET", "/search?q="+query, nil)
 	if err != nil {
 		return
@@ -29,7 +29,7 @@ func (c *Search) Search(query string) (out *CategoriesCollection, err error) {
 }
 
 // Autocomplete query with less than 2 characters
-func (c *Search) Autocomplete(query string) (out *AutocompleteCollection, err error) {
+func (c *Search) Autocomplete(query string) (out *GetAutocompleteCollectionOutput, err error) {
 	body, err := c.call("GET", "/autocomplete?q="+query, nil)
 	if err != nil {
 		return

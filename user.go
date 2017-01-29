@@ -20,8 +20,8 @@ type GetUserOutput struct {
 
 // GetUserFavoriteListsOutput request output.
 type GetUserFavoriteListsOutput struct {
-	FavoriteList []FavoriteList `json:"favorite_lists"`
-	Meta         Meta           `json:"meta"`
+	FavoriteList  []FavoriteList `json:"favorite_lists"`
+	GetMetaOutput GetMetaOutput  `json:"meta"`
 }
 
 // FavoriteList request output.
@@ -95,7 +95,7 @@ func (c *User) GetUserFavoriteLists() (out *GetUserFavoriteListsOutput, err erro
 }
 
 // GetUserFavorites ...
-func (c *User) GetUserFavorites() (out *FavoritesCollection, err error) {
+func (c *User) GetUserFavorites() (out *GetFavoritesCollectionOutput, err error) {
 	body, err := c.call("GET", "/favorites", nil)
 	if err != nil {
 		return nil, err
@@ -107,7 +107,7 @@ func (c *User) GetUserFavorites() (out *FavoritesCollection, err error) {
 }
 
 // GetUserSingleFavorite ...
-func (c *User) GetUserSingleFavorite(favoriteListID int) (out *SingleFavorite, err error) {
+func (c *User) GetUserSingleFavorite(favoriteListID int) (out *GetSingleFavoriteOutput, err error) {
 	body, err := c.call("GET", "/favorites/"+strconv.Itoa(favoriteListID), nil)
 	if err != nil {
 		return nil, err
@@ -137,7 +137,7 @@ func (c *User) CreateFavoriteList(fl *FavoriteListQuery) (out *GetFavoriteListOu
 }
 
 // CreateFavorite ...
-func (c *User) CreateFavorite(f *FavoriteQuery) (out *SingleFavorite, err error) {
+func (c *User) CreateFavorite(f *FavoriteQuery) (out *GetSingleFavoriteOutput, err error) {
 	u := "/favorites/"
 	u, err = addURLOptions(u, f)
 	if err != nil {
@@ -155,7 +155,7 @@ func (c *User) CreateFavorite(f *FavoriteQuery) (out *SingleFavorite, err error)
 }
 
 // GetListFavoritesBelongingToList ...
-func (c *User) GetListFavoritesBelongingToList(favoriteListID int) (out *FavoritesCollection, err error) {
+func (c *User) GetListFavoritesBelongingToList(favoriteListID int) (out *GetFavoritesCollectionOutput, err error) {
 	u := "/favorite_lists/" + strconv.Itoa(favoriteListID) + "/favorites"
 	body, err := c.call("GET", u, nil)
 	if err != nil {
@@ -192,7 +192,7 @@ func (c *User) DeleteFavorite(favoriteID int) (io.ReadCloser, error) {
 }
 
 // UpdateFavorite ...
-func (c *User) UpdateFavorite(favoriteID int, sq *SearchQuery) (out *SingleFavorite, err error) {
+func (c *User) UpdateFavorite(favoriteID int, sq *GetSearchQueryInput) (out *GetSingleFavoriteOutput, err error) {
 	u := "/favorites/" + strconv.Itoa(favoriteID)
 	u, err = addURLOptions(u, sq)
 	if err != nil {

@@ -78,8 +78,8 @@ type SingleSKU struct {
 
 // SKUSCollection request output.
 type SKUSCollection struct {
-	SKU  []SKU `json:"skus"`
-	Meta Meta  `json:"meta"`
+	SKU           []SKU         `json:"skus"`
+	GetMetaOutput GetMetaOutput `json:"meta"`
 }
 
 // SKUS client.
@@ -97,7 +97,7 @@ func NewSKUS(config *Config) *SKUS {
 }
 
 // GetCategorySKUS list SKUs of specific category.
-func (c *SKUS) GetCategorySKUS(categoryID int, sq *SearchQuery) (out *SKUSCollection, err error) {
+func (c *SKUS) GetCategorySKUS(categoryID int, sq *GetSearchQueryInput) (out *SKUSCollection, err error) {
 	u := "/categories/" + strconv.Itoa(categoryID) + "/skus"
 	u, err = addURLOptions(u, sq)
 	if err != nil {
@@ -150,7 +150,7 @@ func (c *SKUS) GetSKUSProducts(skuID int) (out *ProductsCollection, err error) {
 }
 
 // GetSKUSReviews retrieve an SKU's reviews.
-func (c *SKUS) GetSKUSReviews(skuID int, sq *SearchQuery) (out *ReviewsCollection, err error) {
+func (c *SKUS) GetSKUSReviews(skuID int, sq *GetSearchQueryInput) (out *ReviewsCollection, err error) {
 	u := "/skus/" + strconv.Itoa(skuID) + "/reviews"
 	u, err = addURLOptions(u, sq)
 	if err != nil {
@@ -201,7 +201,7 @@ func (c *SKUS) FlagSKUReview(skuID int, reviewID int, f *FlagQuery) (out *SKURev
 }
 
 // GetSKUSSpecifications retrieve an SKU's specifications.
-func (c *SKUS) GetSKUSSpecifications(skuID int, sq *SearchQuery) (out *SKUSSpecificationsCollections, err error) {
+func (c *SKUS) GetSKUSSpecifications(skuID int, sq *GetSearchQueryInput) (out *SKUSSpecificationsCollections, err error) {
 	u := "/skus/" + strconv.Itoa(skuID) + "/specifications/"
 	u, err = addURLOptions(u, sq)
 	if err != nil {
@@ -231,7 +231,7 @@ func (c *SKUS) GetSKUSPriceHistory(skuID int) (out *PriceHistoryCollection, err 
 }
 
 // GetSKUSFavorite retrieve an SKU's favorite.
-func (c *SKUS) GetSKUSFavorite(skuID int) (out *FavoritesCollection, err error) {
+func (c *SKUS) GetSKUSFavorite(skuID int) (out *GetFavoritesCollectionOutput, err error) {
 	u := "/skus/" + strconv.Itoa(skuID) + "/favorite/"
 	body, err := c.call("GET", u, nil)
 	if err != nil {

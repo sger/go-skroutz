@@ -1,7 +1,7 @@
 package skroutz
 
-// Autocomplete struct.
-type Autocomplete struct {
+// GetAutocompleteOutput struct.
+type GetAutocompleteOutput struct {
 	K string `json:"k"`
 	I int64  `json:"i"`
 	D struct {
@@ -10,7 +10,7 @@ type Autocomplete struct {
 	} `json:"d"`
 }
 
-// AutocompleteCollection struct.
-type AutocompleteCollection struct {
-	Autocomplete []Autocomplete `json:"autocomplete"`
+// GetAutocompleteCollectionOutput struct.
+type GetAutocompleteCollectionOutput struct {
+	Autocomplete []GetAutocompleteOutput `json:"autocomplete"`
 }

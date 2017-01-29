@@ -24,8 +24,8 @@ type Product struct {
 
 // ProductsCollection request output.
 type ProductsCollection struct {
-	Product []Product `json:"products"`
-	Meta    Meta      `json:"meta"`
+	Product       []Product     `json:"products"`
+	GetMetaOutput GetMetaOutput `json:"meta"`
 }
 
 // SingleProduct request output.

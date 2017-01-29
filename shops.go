@@ -2,7 +2,6 @@ package skroutz
 
 import (
 	"encoding/json"
-	"fmt"
 	"strconv"
 )
 
@@ -40,8 +39,8 @@ type Shop struct {
 
 // ShopsCollection request output.
 type ShopsCollection struct {
-	Shop []Shop `json:"shops"`
-	Meta Meta   `json:"meta"`
+	Shop          []Shop        `json:"shops"`
+	GetMetaOutput GetMetaOutput `json:"meta"`
 }
 
 // SingleShop request output.
@@ -63,8 +62,8 @@ type ShopReview struct {
 
 // ShopReviewsCollection requets output.
 type ShopReviewsCollection struct {
-	ShopReview []ShopReview `json:"reviews"`
-	Meta       Meta         `json:"meta"`
+	ShopReview    []ShopReview  `json:"reviews"`
+	GetMetaOutput GetMetaOutput `json:"meta"`
 }
 
 // Location request output.
@@ -100,8 +99,8 @@ type Address struct {
 
 // LocationsCollection request output.
 type LocationsCollection struct {
-	Location []Location `json:"locations"`
-	Meta     Meta       `json:"meta"`
+	Location      []Location    `json:"locations"`
+	GetMetaOutput GetMetaOutput `json:"meta"`
 }
 
 // GetSingleShop retrieve a single shop.
@@ -118,13 +117,12 @@ func (c *Shops) GetSingleShop(shopID int) (out *SingleShop, err error) {
 }
 
 // GetShopReviews retrieve a shop's reviews.
-func (c *Shops) GetShopReviews(shopID int, sq *SearchQuery) (out *ShopReviewsCollection, err error) {
+func (c *Shops) GetShopReviews(shopID int, sq *GetSearchQueryInput) (out *ShopReviewsCollection, err error) {
 	u := "/shops/" + strconv.Itoa(shopID) + "/reviews"
 	u, err = addURLOptions(u, sq)
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(u)
 	body, err := c.call("GET", u, nil)
 	if err != nil {
 		return
@@ -136,13 +134,12 @@ func (c *Shops) GetShopReviews(shopID int, sq *SearchQuery) (out *ShopReviewsCol
 }
 
 // GetShopLocations list shop locations.
-func (c *Shops) GetShopLocations(shopID int, sq *SearchQuery) (out *LocationsCollection, err error) {
+func (c *Shops) GetShopLocations(shopID int, sq *GetSearchQueryInput) (out *LocationsCollection, err error) {
 	u := "/shops/" + strconv.Itoa(shopID) + "/locations"
 	u, err = addURLOptions(u, sq)
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(u)
 	body, err := c.call("GET", u, nil)
 	if err != nil {
 		return
@@ -154,13 +151,12 @@ func (c *Shops) GetShopLocations(shopID int, sq *SearchQuery) (out *LocationsCol
 }
 
 // GetSingleShopLocation retrieve a single shop location.
-func (c *Shops) GetSingleShopLocation(shopID int, locationID int, sq *SearchQuery) (out *SingleShopLocation, err error) {
+func (c *Shops) GetSingleShopLocation(shopID int, locationID int, sq *GetSearchQueryInput) (out *SingleShopLocation, err error) {
 	u := "/shops/" + strconv.Itoa(shopID) + "/locations/" + strconv.Itoa(locationID)
 	u, err = addURLOptions(u, sq)
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(u)
 	body, err := c.call("GET", u, nil)
 	if err != nil {
 		return
@@ -172,13 +168,12 @@ func (c *Shops) GetSingleShopLocation(shopID int, locationID int, sq *SearchQuer
 }
 
 // SearchShop search for shops
-func (c *Shops) SearchShop(sq *SearchQuery) (out *ShopsCollection, err error) {
+func (c *Shops) SearchShop(sq *GetSearchQueryInput) (out *ShopsCollection, err error) {
 	u := "/shops/search"
 	u, err = addURLOptions(u, sq)
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(u)
 	body, err := c.call("GET", u, nil)
 	if err != nil {
 		return

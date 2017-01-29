@@ -2,7 +2,7 @@ package skroutz
 
 import "net/http"
 
-// Config struct for the Skroutz clients.
+// Config struct for the Skroutz client.
 type Config struct {
 	HTTPClient  *http.Client
 	AccessToken string

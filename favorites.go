@@ -1,7 +1,7 @@
 package skroutz
 
-// Favorite request output.
-type Favorite struct {
+// GetFavoriteOutput request output.
+type GetFavoriteOutput struct {
 	ID                   int    `json:"id"`
 	HaveIt               bool   `json:"have_it"`
 	UserID               int64  `json:"user_id"`
@@ -12,13 +12,13 @@ type Favorite struct {
 	GetAbsoluteThreshold string `json:"get_absolute_threshold"`
 }
 
-// SingleFavorite request output.
-type SingleFavorite struct {
-	Favorite Favorite `json:"favorite"`
+// GetSingleFavoriteOutput request output.
+type GetSingleFavoriteOutput struct {
+	Favorite GetFavoriteOutput `json:"favorite"`
 }
 
-// FavoritesCollection request output.
-type FavoritesCollection struct {
-	Favorite []Favorite `json:"favorites"`
-	Meta     Meta       `json:"meta"`
+// GetFavoritesCollectionOutput request output.
+type GetFavoritesCollectionOutput struct {
+	Favorites     []GetFavoriteOutput `json:"favorites"`
+	GetMetaOutput GetMetaOutput       `json:"meta"`
 }

@@ -1,7 +1,7 @@
 package skroutz
 
-// Meta struct contains all the metadata for api response.
-type Meta struct {
+// GetMetaOutput struct contains all the metadata for the api response.
+type GetMetaOutput struct {
 	Q             string        `json:"q,omitempty"`
 	Alternatives  []Alternative `json:"alternatives,omitempty"`
 	StrongMatches struct {

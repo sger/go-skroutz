@@ -17,8 +17,8 @@ type Review struct {
 
 // ReviewsCollection request output.
 type ReviewsCollection struct {
-	Review []Review `json:"reviews"`
-	Meta   Meta     `json:"meta"`
+	Review        []Review      `json:"reviews"`
+	GetMetaOutput GetMetaOutput `json:"meta"`
 }
 
 // SKUReviewVote request output.
