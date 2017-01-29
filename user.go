@@ -18,41 +18,41 @@ type GetUserOutput struct {
 	} `json:"user"`
 }
 
-// GetUserFavoriteListsOutput request output.
-type GetUserFavoriteListsOutput struct {
-	FavoriteList  []FavoriteList `json:"favorite_lists"`
-	GetMetaOutput GetMetaOutput  `json:"meta"`
+// GetUserFavoriteListsCollectionOutput request output.
+type GetUserFavoriteListsCollectionOutput struct {
+	FavoriteList []GetFavoriteListOutput `json:"favorite_lists"`
+	Meta         GetMetaOutput           `json:"meta"`
 }
 
-// FavoriteList request output.
-type FavoriteList struct {
+// GetFavoriteListOutput request output.
+type GetFavoriteListOutput struct {
 	ID         int64  `json:"id"`
 	Name       string `json:"name"`
 	CategoryID int64  `json:"category_id"`
 }
 
-// GetFavoriteListOutput request output.
-type GetFavoriteListOutput struct {
-	FavoriteList FavoriteList `json:"favorite_list"`
+// GetSingleFavoriteListOutput request output.
+type GetSingleFavoriteListOutput struct {
+	FavoriteList GetFavoriteListOutput `json:"favorite_list"`
 }
 
-// FavoriteListQuery request input.
-type FavoriteListQuery struct {
-	FL `url:"favorite_list"`
+// GetFavoriteListQueryInput request input.
+type GetFavoriteListQueryInput struct {
+	GetFLOutput `url:"favorite_list"`
 }
 
-// FL request output.
-type FL struct {
+// GetFLOutput request output.
+type GetFLOutput struct {
 	Name string `url:"name,omitempty"`
 }
 
-// FavoriteQuery request input.
-type FavoriteQuery struct {
-	F `url:"favorite"`
+// GetFavoriteQueryInput request input.
+type GetFavoriteQueryInput struct {
+	GetFOutput `url:"favorite"`
 }
 
-// F request output.
-type F struct {
+// GetFOutput request output.
+type GetFOutput struct {
 	SkuID int64 `url:"sku_id,omitempty"`
 }
 
@@ -83,7 +83,7 @@ func (c *User) GetUser() (out *GetUserOutput, err error) {
 }
 
 // GetUserFavoriteLists list favorite lists.
-func (c *User) GetUserFavoriteLists() (out *GetUserFavoriteListsOutput, err error) {
+func (c *User) GetUserFavoriteLists() (out *GetUserFavoriteListsCollectionOutput, err error) {
 	body, err := c.call("GET", "/favorite_lists", nil)
 	if err != nil {
 		return nil, err
@@ -119,7 +119,7 @@ func (c *User) GetUserSingleFavorite(favoriteListID int) (out *GetSingleFavorite
 }
 
 // CreateFavoriteList ...
-func (c *User) CreateFavoriteList(fl *FavoriteListQuery) (out *GetFavoriteListOutput, err error) {
+func (c *User) CreateFavoriteList(fl *GetFavoriteListQueryInput) (out *GetFavoriteListQueryInput, err error) {
 	u := "/favorite_lists/"
 	u, err = addURLOptions(u, fl)
 	if err != nil {
@@ -137,7 +137,7 @@ func (c *User) CreateFavoriteList(fl *FavoriteListQuery) (out *GetFavoriteListOu
 }
 
 // CreateFavorite ...
-func (c *User) CreateFavorite(f *FavoriteQuery) (out *GetSingleFavoriteOutput, err error) {
+func (c *User) CreateFavorite(f *GetFavoriteQueryInput) (out *GetSingleFavoriteOutput, err error) {
 	u := "/favorites/"
 	u, err = addURLOptions(u, f)
 	if err != nil {

@@ -24,8 +24,8 @@ type GetProductOutput struct {
 
 // GetProductsCollectionOutput request output.
 type GetProductsCollectionOutput struct {
-	Products      []GetProductOutput `json:"products"`
-	GetMetaOutput GetMetaOutput      `json:"meta"`
+	Products []GetProductOutput `json:"products"`
+	Meta     GetMetaOutput      `json:"meta"`
 }
 
 // GetSingleProductOutput request output.

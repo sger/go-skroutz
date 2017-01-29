@@ -32,8 +32,8 @@ type GetFilterGroupOutput struct {
 
 // GetFilterGroupCollectionOutput request output.
 type GetFilterGroupCollectionOutput struct {
-	FilterGroups  []GetFilterGroupOutput `json:"filter_groups"`
-	GetMetaOutput GetMetaOutput          `json:"meta"`
+	FilterGroups []GetFilterGroupOutput `json:"filter_groups"`
+	Meta         GetMetaOutput          `json:"meta"`
 }
 
 // FilterGroups client.

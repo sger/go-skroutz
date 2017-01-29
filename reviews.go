@@ -17,8 +17,8 @@ type GetReviewOutput struct {
 
 // GetReviewsCollectionOutput request output.
 type GetReviewsCollectionOutput struct {
-	Reviews       []GetReviewOutput `json:"reviews"`
-	GetMetaOutput GetMetaOutput     `json:"meta"`
+	Reviews []GetReviewOutput `json:"reviews"`
+	Meta    GetMetaOutput     `json:"meta"`
 }
 
 // GetSKUReviewVoteOutput request output.
@@ -31,7 +31,7 @@ type GetSKUReviewVoteOutput struct {
 	Review      GetReviewOutput `json:"sku_review"`
 }
 
-// SKUReviewFlag request output.
+// GetSKUReviewFlagOutput request output.
 type GetSKUReviewFlagOutput struct {
 	ID            int64  `json:"id"`
 	FlaggableID   int64  `json:"flaggable_id"`

@@ -19,6 +19,6 @@ type GetSingleFavoriteOutput struct {
 
 // GetFavoritesCollectionOutput request output.
 type GetFavoritesCollectionOutput struct {
-	Favorites     []GetFavoriteOutput `json:"favorites"`
-	GetMetaOutput GetMetaOutput       `json:"meta"`
+	Favorites []GetFavoriteOutput `json:"favorites"`
+	Meta      GetMetaOutput       `json:"meta"`
 }

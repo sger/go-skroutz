@@ -23,8 +23,8 @@ type GetCategoryOutput struct {
 
 // GetCategoriesCollectionOutput request output.
 type GetCategoriesCollectionOutput struct {
-	GetCategoryOutput []GetCategoryOutput `json:"categories"`
-	GetMetaOutput     GetMetaOutput       `json:"meta"`
+	Categories []GetCategoryOutput `json:"categories"`
+	Meta       GetMetaOutput       `json:"meta"`
 }
 
 // GetSingleCategoryOutput request output.

@@ -24,7 +24,7 @@ type GetFlagsOptionOutput struct {
 
 // GetFlagsOptionCollectionOutput request output.
 type GetFlagsOptionCollectionOutput struct {
-	FlagsOption []GetFlagsOptionOutput `json:"flags"`
+	Flags []GetFlagsOptionOutput `json:"flags"`
 }
 
 // GetAllFlags retrieve all flags.

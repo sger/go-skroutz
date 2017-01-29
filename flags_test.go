@@ -8,6 +8,6 @@ import (
 
 func TestFlags_GetAllFlags(t *testing.T) {
 	c := client()
-	_, err := c.FlagContent.GetAllFlags()
+	_, err := c.FlagsContent.GetAllFlags()
 	assert.NoError(t, err)
 }

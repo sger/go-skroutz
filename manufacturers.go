@@ -34,7 +34,7 @@ type GetSingleManufacturerOutput struct {
 // GetManufacturersCollectionOutput request output.
 type GetManufacturersCollectionOutput struct {
 	Manufacturers []GetSpecificationOutput `json:"manufacturers"`
-	GetMetaOutput GetMetaOutput            `json:"meta"`
+	Meta          GetMetaOutput            `json:"meta"`
 }
 
 // GetManufacturers list manufacturers.

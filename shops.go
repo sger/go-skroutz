@@ -39,8 +39,8 @@ type GetShopOutput struct {
 
 // GetShopsCollectionOutput request output.
 type GetShopsCollectionOutput struct {
-	Shops         []GetShopOutput `json:"shops"`
-	GetMetaOutput GetMetaOutput   `json:"meta"`
+	Shops []GetShopOutput `json:"shops"`
+	Meta  GetMetaOutput   `json:"meta"`
 }
 
 // GetSingleShopOutput request output.
@@ -62,8 +62,8 @@ type GetShopReviewOutput struct {
 
 // GetShopReviewsCollectionOutput requets output.
 type GetShopReviewsCollectionOutput struct {
-	ShopReviews   []GetShopReviewOutput `json:"reviews"`
-	GetMetaOutput GetMetaOutput         `json:"meta"`
+	ShopReviews []GetShopReviewOutput `json:"reviews"`
+	Meta        GetMetaOutput         `json:"meta"`
 }
 
 // GetLocationOutput request output.
@@ -99,8 +99,8 @@ type Address struct {
 
 // GetLocationsCollectionOutput request output.
 type GetLocationsCollectionOutput struct {
-	Locations     []GetLocationOutput `json:"locations"`
-	GetMetaOutput GetMetaOutput       `json:"meta"`
+	Locations []GetLocationOutput `json:"locations"`
+	Meta      GetMetaOutput       `json:"meta"`
 }
 
 // GetSingleShop retrieve a single shop.

@@ -78,8 +78,8 @@ type GetSingleSKUOutput struct {
 
 // GetSKUSCollectionOutput request output.
 type GetSKUSCollectionOutput struct {
-	SKU           []GetSKUOutput `json:"skus"`
-	GetMetaOutput GetMetaOutput  `json:"meta"`
+	SKU  []GetSKUOutput `json:"skus"`
+	Meta GetMetaOutput  `json:"meta"`
 }
 
 // SKUS client.
