@@ -1,3 +1,4 @@
+[![GoDoc](https://godoc.org/github.com/sger/go-skroutz?status.svg)](https://godoc.org/github.com/sger/go-skroutz)]
 # Skroutz
 
   Skroutz v3.1 client for Go.
