@@ -1,7 +1,7 @@
 [![GoDoc](https://godoc.org/github.com/sger/go-skroutz?status.svg)](https://godoc.org/github.com/sger/go-skroutz)
 # Skroutz
 
-  Go package for (Skroutz v3.1 API)[https://developer.skroutz.gr].
+  Go package for [Skroutz v3.1 API](https://developer.skroutz.gr).
 
 ## Installation
 
@@ -17,6 +17,9 @@ $ go get github.com/sger/go-skroutz
 $ godoc .
 $ godoc -http=:6060
 ```
+
+## Usage
+[https://github.com/sger/go-skroutz/tree/master/_examples](https://github.com/sger/go-skroutz/tree/master/_examples)
 
 ## Testing
 
