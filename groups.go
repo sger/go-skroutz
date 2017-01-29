@@ -51,6 +51,7 @@ func NewFilterGroups(config *Config) *FilterGroups {
 }
 
 // GetFilterGroups list FilterGroups.
+// https://developer.skroutz.gr/api/v3/filter_groups/#list-filtergroups
 func (c *FilterGroups) GetFilterGroups(categoryID int) (out *GetFilterGroupCollectionOutput, err error) {
 	u := "/categories/" + strconv.Itoa(categoryID) + "/filter_groups"
 	body, err := c.call("GET", u, nil)

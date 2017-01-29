@@ -47,6 +47,7 @@ func NewCategories(config *Config) *Categories {
 }
 
 // GetCategories lists all categories.
+// https://developer.skroutz.gr/api/v3/category/#list-all-categories
 func (c *Categories) GetCategories() (out *GetCategoriesCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories", nil)
 	if err != nil {
@@ -59,6 +60,7 @@ func (c *Categories) GetCategories() (out *GetCategoriesCollectionOutput, err er
 }
 
 // GetSingleCategory retrieve a single category.
+// https://developer.skroutz.gr/api/v3/category/#retrieve-a-single-category
 func (c *Categories) GetSingleCategory(categoryID int) (out *GetSingleCategoryOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID), nil)
 	if err != nil {
@@ -71,6 +73,7 @@ func (c *Categories) GetSingleCategory(categoryID int) (out *GetSingleCategoryOu
 }
 
 // GetParentCategory retrieve the parent of a category.
+// https://developer.skroutz.gr/api/v3/category/#retrieve-the-parent-of-a-category
 func (c *Categories) GetParentCategory(categoryID int) (out *GetSingleCategoryOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/parent", nil)
 	if err != nil {
@@ -83,6 +86,7 @@ func (c *Categories) GetParentCategory(categoryID int) (out *GetSingleCategoryOu
 }
 
 // GetRootCategory retrieve the root category
+// https://developer.skroutz.gr/api/v3/category/#retrieve-the-root-category
 func (c *Categories) GetRootCategory() (out *GetSingleCategoryOutput, err error) {
 	body, err := c.call("GET", "/categories/root", nil)
 	if err != nil {
@@ -95,6 +99,7 @@ func (c *Categories) GetRootCategory() (out *GetSingleCategoryOutput, err error)
 }
 
 // GetChildrenCategories list the children categories of a category.
+// https://developer.skroutz.gr/api/v3/category/#list-the-children-categories-of-a-category
 func (c *Categories) GetChildrenCategories(categoryID int) (out *GetCategoriesCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/children", nil)
 	if err != nil {
@@ -107,6 +112,7 @@ func (c *Categories) GetChildrenCategories(categoryID int) (out *GetCategoriesCo
 }
 
 // GetCategorySpecifications list a category's specifications.
+// https://developer.skroutz.gr/api/v3/category/#list-a-categorys-specifications
 func (c *Categories) GetCategorySpecifications(categoryID int) (out *GetSpecificationCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/specifications", nil)
 	if err != nil {
@@ -131,6 +137,7 @@ func (c *Categories) GetCategorySpecificationsByGroup(categoryID int) (out *GetS
 }
 
 // GetCategoryManufacturers list a category's manufacturers.
+// https://developer.skroutz.gr/api/v3/category/#list-a-categorys-manufacturers
 func (c *Categories) GetCategoryManufacturers(categoryID int) (out *GetManufacturersCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/manufacturers", nil)
 	if err != nil {
@@ -143,6 +150,7 @@ func (c *Categories) GetCategoryManufacturers(categoryID int) (out *GetManufactu
 }
 
 // GetCategoryFavorites list a category's favorites.Requires user token with the 'favorites' permission.
+// https://developer.skroutz.gr/api/v3/category/#list-a-categorys-favorites
 func (c *Categories) GetCategoryFavorites(categoryID int) (out *GetManufacturersCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/favorites", nil)
 	if err != nil {

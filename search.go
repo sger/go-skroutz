@@ -17,6 +17,7 @@ func NewSearch(config *Config) *Search {
 }
 
 // Search query with less than 2 characters
+// https://developer.skroutz.gr/api/v3/search/#search
 func (c *Search) Search(query string) (out *GetCategoriesCollectionOutput, err error) {
 	body, err := c.call("GET", "/search?q="+query, nil)
 	if err != nil {
@@ -29,6 +30,7 @@ func (c *Search) Search(query string) (out *GetCategoriesCollectionOutput, err e
 }
 
 // Autocomplete query with less than 2 characters
+// https://developer.skroutz.gr/api/v3/search/#autocomplete
 func (c *Search) Autocomplete(query string) (out *GetAutocompleteCollectionOutput, err error) {
 	body, err := c.call("GET", "/autocomplete?q="+query, nil)
 	if err != nil {

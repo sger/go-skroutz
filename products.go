@@ -48,6 +48,7 @@ func NewProducts(config *Config) *Products {
 }
 
 // GetSingleProduct retrieve a single product.
+// https://developer.skroutz.gr/api/v3/product/#retrieve-a-single-product
 func (c *Products) GetSingleProduct(productID int) (out *GetSingleProductOutput, err error) {
 	body, err := c.call("GET", "/products/"+strconv.Itoa(productID), nil)
 	if err != nil {
@@ -60,6 +61,7 @@ func (c *Products) GetSingleProduct(productID int) (out *GetSingleProductOutput,
 }
 
 // SearchProducts search for products.
+// https://developer.skroutz.gr/api/v3/product/#search-for-products
 func (c *Products) SearchProducts(shopID int, shopUID string) (out *GetProductsCollectionOutput, err error) {
 	body, err := c.call("GET", "/shops/"+strconv.Itoa(shopID)+"/products/search?shop_uid="+shopUID, nil)
 	if err != nil {

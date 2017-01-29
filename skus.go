@@ -97,6 +97,7 @@ func NewSKUS(config *Config) *SKUS {
 }
 
 // GetCategorySKUS list SKUs of specific category.
+// https://developer.skroutz.gr/api/v3/sku/#list-skus-of-specific-category
 func (c *SKUS) GetCategorySKUS(categoryID int, sq *GetSearchQueryInput) (out *GetSKUSCollectionOutput, err error) {
 	u := "/categories/" + strconv.Itoa(categoryID) + "/skus"
 	u, err = addURLOptions(u, sq)
@@ -114,6 +115,7 @@ func (c *SKUS) GetCategorySKUS(categoryID int, sq *GetSearchQueryInput) (out *Ge
 }
 
 // GetSingleSKU retrieve a single SKU.
+// https://developer.skroutz.gr/api/v3/sku/#retrieve-a-single-sku
 func (c *SKUS) GetSingleSKU(skuID int) (out *GetSingleSKUOutput, err error) {
 	body, err := c.call("GET", "/skus/"+strconv.Itoa(skuID), nil)
 	if err != nil {
@@ -126,6 +128,7 @@ func (c *SKUS) GetSingleSKU(skuID int) (out *GetSingleSKUOutput, err error) {
 }
 
 // GetSimilarSKUS retrieve similar SKUs.
+// https://developer.skroutz.gr/api/v3/sku/#retrieve-similar-skus
 func (c *SKUS) GetSimilarSKUS(skuID int) (out *GetSKUSCollectionOutput, err error) {
 	body, err := c.call("GET", "/skus/"+strconv.Itoa(skuID)+"/similar", nil)
 	if err != nil {
@@ -138,6 +141,7 @@ func (c *SKUS) GetSimilarSKUS(skuID int) (out *GetSKUSCollectionOutput, err erro
 }
 
 // GetSKUSProducts retrieve an SKU's products.
+// https://developer.skroutz.gr/api/v3/sku/#retrieve-an-skus-products
 func (c *SKUS) GetSKUSProducts(skuID int) (out *GetProductsCollectionOutput, err error) {
 	body, err := c.call("GET", "/skus/"+strconv.Itoa(skuID)+"/products", nil)
 	if err != nil {
@@ -150,6 +154,7 @@ func (c *SKUS) GetSKUSProducts(skuID int) (out *GetProductsCollectionOutput, err
 }
 
 // GetSKUSReviews retrieve an SKU's reviews.
+// https://developer.skroutz.gr/api/v3/sku/#retrieve-an-skus-reviews
 func (c *SKUS) GetSKUSReviews(skuID int, sq *GetSearchQueryInput) (out *GetReviewsCollectionOutput, err error) {
 	u := "/skus/" + strconv.Itoa(skuID) + "/reviews"
 	u, err = addURLOptions(u, sq)
@@ -167,6 +172,7 @@ func (c *SKUS) GetSKUSReviews(skuID int, sq *GetSearchQueryInput) (out *GetRevie
 }
 
 // VoteSKUReview vote a SKU's review.
+// https://developer.skroutz.gr/api/v3/sku/#vote-a-skus-review
 func (c *SKUS) VoteSKUReview(skuID int, reviewID int, v *GetVoteQueryInput) (out *GetSKUReviewVoteOutput, err error) {
 	u := "/skus/" + strconv.Itoa(skuID) + "/reviews/" + strconv.Itoa(reviewID) + "/votes"
 	u, err = addURLOptions(u, v)
@@ -184,6 +190,7 @@ func (c *SKUS) VoteSKUReview(skuID int, reviewID int, v *GetVoteQueryInput) (out
 }
 
 // FlagSKUReview flag a SKU's review.
+// https://developer.skroutz.gr/api/v3/sku/#flag-a-skus-review
 func (c *SKUS) FlagSKUReview(skuID int, reviewID int, f *GetFlagQueryInput) (out *GetSKUReviewFlagOutput, err error) {
 	u := "/skus/" + strconv.Itoa(skuID) + "/reviews/" + strconv.Itoa(reviewID) + "/flags"
 	u, err = addURLOptions(u, f)
@@ -201,6 +208,7 @@ func (c *SKUS) FlagSKUReview(skuID int, reviewID int, f *GetFlagQueryInput) (out
 }
 
 // GetSKUSSpecifications retrieve an SKU's specifications.
+// https://developer.skroutz.gr/api/v3/sku/#retrieve-an-skus-specifications
 func (c *SKUS) GetSKUSSpecifications(skuID int, sq *GetSearchQueryInput) (out *GetSKUSSpecificationsCollectionsOutput, err error) {
 	u := "/skus/" + strconv.Itoa(skuID) + "/specifications/"
 	u, err = addURLOptions(u, sq)
@@ -218,6 +226,7 @@ func (c *SKUS) GetSKUSSpecifications(skuID int, sq *GetSearchQueryInput) (out *G
 }
 
 // GetSKUSPriceHistory retrieve a SKU's price history.
+// https://developer.skroutz.gr/api/v3/sku/#retrieve-a-skus-price-history
 func (c *SKUS) GetSKUSPriceHistory(skuID int) (out *GetPriceHistoryCollectionOutput, err error) {
 	u := "/skus/" + strconv.Itoa(skuID) + "/price_history/"
 	body, err := c.call("GET", u, nil)
@@ -231,6 +240,7 @@ func (c *SKUS) GetSKUSPriceHistory(skuID int) (out *GetPriceHistoryCollectionOut
 }
 
 // GetSKUSFavorite retrieve an SKU's favorite.
+// https://developer.skroutz.gr/api/v3/sku/#retrieve-an-skus-favorite
 func (c *SKUS) GetSKUSFavorite(skuID int) (out *GetFavoritesCollectionOutput, err error) {
 	u := "/skus/" + strconv.Itoa(skuID) + "/favorite/"
 	body, err := c.call("GET", u, nil)

@@ -38,6 +38,7 @@ type GetManufacturersCollectionOutput struct {
 }
 
 // GetManufacturers list manufacturers.
+// https://developer.skroutz.gr/api/v3/manufacturer/#list-manufacturers
 func (c *Manufacturers) GetManufacturers() (out *GetManufacturersCollectionOutput, err error) {
 	u := "/manufacturers"
 	body, err := c.call("GET", u, nil)
@@ -51,6 +52,7 @@ func (c *Manufacturers) GetManufacturers() (out *GetManufacturersCollectionOutpu
 }
 
 // GetSingleManufacturer retrieve a single manufacturer.
+// https://developer.skroutz.gr/api/v3/manufacturer/#retrieve-a-single-manufacturer
 func (c *Manufacturers) GetSingleManufacturer(manufacturerID int) (out *GetSingleManufacturerOutput, err error) {
 	u := "/manufacturers/" + strconv.Itoa(manufacturerID)
 	body, err := c.call("GET", u, nil)
@@ -64,6 +66,7 @@ func (c *Manufacturers) GetSingleManufacturer(manufacturerID int) (out *GetSingl
 }
 
 // GetManufacturersCategories retrieve a manufacturer's categories.
+// https://developer.skroutz.gr/api/v3/manufacturer/#retrieve-a-manufacturers-categories
 func (c *Manufacturers) GetManufacturersCategories(manufacturerID int) (out *GetCategoriesCollectionOutput, err error) {
 	u := "/manufacturers/" + strconv.Itoa(manufacturerID) + "/categories"
 	body, err := c.call("GET", u, nil)
@@ -77,6 +80,7 @@ func (c *Manufacturers) GetManufacturersCategories(manufacturerID int) (out *Get
 }
 
 // GetManufacturersSKUS retrieve a manufacturer's SKUs.
+// https://developer.skroutz.gr/api/v3/manufacturer/#retrieve-a-manufacturers-skus
 func (c *Manufacturers) GetManufacturersSKUS(manufacturerID int) (out *GetSKUSCollectionOutput, err error) {
 	u := "/manufacturers/" + strconv.Itoa(manufacturerID) + "/skus"
 	body, err := c.call("GET", u, nil)

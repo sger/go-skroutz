@@ -104,6 +104,7 @@ type GetLocationsCollectionOutput struct {
 }
 
 // GetSingleShop retrieve a single shop.
+// https://developer.skroutz.gr/api/v3/shop/#retrieve-a-single-shop
 func (c *Shops) GetSingleShop(shopID int) (out *GetSingleShopOutput, err error) {
 	u := "/shops/" + strconv.Itoa(shopID)
 	body, err := c.call("GET", u, nil)
@@ -117,6 +118,7 @@ func (c *Shops) GetSingleShop(shopID int) (out *GetSingleShopOutput, err error) 
 }
 
 // GetShopReviews retrieve a shop's reviews.
+// https://developer.skroutz.gr/api/v3/shop/#retrieve-a-shops-reviews
 func (c *Shops) GetShopReviews(shopID int, sq *GetSearchQueryInput) (out *GetShopReviewsCollectionOutput, err error) {
 	u := "/shops/" + strconv.Itoa(shopID) + "/reviews"
 	u, err = addURLOptions(u, sq)
@@ -134,6 +136,7 @@ func (c *Shops) GetShopReviews(shopID int, sq *GetSearchQueryInput) (out *GetSho
 }
 
 // GetShopLocations list shop locations.
+// https://developer.skroutz.gr/api/v3/shop/#list-shop-locations
 func (c *Shops) GetShopLocations(shopID int, sq *GetSearchQueryInput) (out *GetLocationsCollectionOutput, err error) {
 	u := "/shops/" + strconv.Itoa(shopID) + "/locations"
 	u, err = addURLOptions(u, sq)
@@ -151,6 +154,7 @@ func (c *Shops) GetShopLocations(shopID int, sq *GetSearchQueryInput) (out *GetL
 }
 
 // GetSingleShopLocation retrieve a single shop location.
+// https://developer.skroutz.gr/api/v3/shop/#retrieve-a-single-shop-location
 func (c *Shops) GetSingleShopLocation(shopID int, locationID int, sq *GetSearchQueryInput) (out *GetSingleShopLocationOutput, err error) {
 	u := "/shops/" + strconv.Itoa(shopID) + "/locations/" + strconv.Itoa(locationID)
 	u, err = addURLOptions(u, sq)
@@ -168,6 +172,7 @@ func (c *Shops) GetSingleShopLocation(shopID int, locationID int, sq *GetSearchQ
 }
 
 // SearchShop search for shops
+// https://developer.skroutz.gr/api/v3/shop/#search-for-shops
 func (c *Shops) SearchShop(sq *GetSearchQueryInput) (out *GetShopsCollectionOutput, err error) {
 	u := "/shops/search"
 	u, err = addURLOptions(u, sq)

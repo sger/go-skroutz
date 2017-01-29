@@ -71,6 +71,7 @@ func NewUser(config *Config) *User {
 }
 
 // GetUser retrieve the profile of the authenticated user.
+// https://developer.skroutz.gr/api/v3/user/#retrieve-the-profile-of-the-authenticated-user
 func (c *User) GetUser() (out *GetUserOutput, err error) {
 	body, err := c.call("GET", "/user", nil)
 	if err != nil {
@@ -83,6 +84,7 @@ func (c *User) GetUser() (out *GetUserOutput, err error) {
 }
 
 // GetUserFavoriteLists list favorite lists.
+// https://developer.skroutz.gr/api/v3/favorites/#list-favorite-lists
 func (c *User) GetUserFavoriteLists() (out *GetUserFavoriteListsCollectionOutput, err error) {
 	body, err := c.call("GET", "/favorite_lists", nil)
 	if err != nil {
@@ -95,6 +97,7 @@ func (c *User) GetUserFavoriteLists() (out *GetUserFavoriteListsCollectionOutput
 }
 
 // GetUserFavorites ...
+// https://developer.skroutz.gr/api/v3/favorites/#list-favorites
 func (c *User) GetUserFavorites() (out *GetFavoritesCollectionOutput, err error) {
 	body, err := c.call("GET", "/favorites", nil)
 	if err != nil {
@@ -107,6 +110,7 @@ func (c *User) GetUserFavorites() (out *GetFavoritesCollectionOutput, err error)
 }
 
 // GetUserSingleFavorite ...
+// https://developer.skroutz.gr/api/v3/favorites/#retrieve-a-single-favorite
 func (c *User) GetUserSingleFavorite(favoriteListID int) (out *GetSingleFavoriteOutput, err error) {
 	body, err := c.call("GET", "/favorites/"+strconv.Itoa(favoriteListID), nil)
 	if err != nil {
@@ -119,6 +123,7 @@ func (c *User) GetUserSingleFavorite(favoriteListID int) (out *GetSingleFavorite
 }
 
 // CreateFavoriteList ...
+// https://developer.skroutz.gr/api/v3/favorites/#create-a-favoritelist
 func (c *User) CreateFavoriteList(fl *GetFavoriteListQueryInput) (out *GetFavoriteListQueryInput, err error) {
 	u := "/favorite_lists/"
 	u, err = addURLOptions(u, fl)
@@ -137,6 +142,7 @@ func (c *User) CreateFavoriteList(fl *GetFavoriteListQueryInput) (out *GetFavori
 }
 
 // CreateFavorite ...
+// https://developer.skroutz.gr/api/v3/favorites/#create-a-new-favorite
 func (c *User) CreateFavorite(f *GetFavoriteQueryInput) (out *GetSingleFavoriteOutput, err error) {
 	u := "/favorites/"
 	u, err = addURLOptions(u, f)
@@ -155,6 +161,7 @@ func (c *User) CreateFavorite(f *GetFavoriteQueryInput) (out *GetSingleFavoriteO
 }
 
 // GetListFavoritesBelongingToList ...
+// https://developer.skroutz.gr/api/v3/favorites/#list-favorites-belonging-to-list
 func (c *User) GetListFavoritesBelongingToList(favoriteListID int) (out *GetFavoritesCollectionOutput, err error) {
 	u := "/favorite_lists/" + strconv.Itoa(favoriteListID) + "/favorites"
 	body, err := c.call("GET", u, nil)
@@ -168,6 +175,7 @@ func (c *User) GetListFavoritesBelongingToList(favoriteListID int) (out *GetFavo
 }
 
 // DeleteFavoriteList ...
+// https://developer.skroutz.gr/api/v3/favorites/#destroy-a-favoritelist
 func (c *User) DeleteFavoriteList(favoriteListID int) (io.ReadCloser, error) {
 	u := "/favorite_lists/" + strconv.Itoa(favoriteListID)
 	body, err := c.call("DELETE", u, nil)
@@ -180,6 +188,7 @@ func (c *User) DeleteFavoriteList(favoriteListID int) (io.ReadCloser, error) {
 }
 
 // DeleteFavorite ...
+// https://developer.skroutz.gr/api/v3/favorites/#destroy-a-favorite
 func (c *User) DeleteFavorite(favoriteID int) (io.ReadCloser, error) {
 	u := "/favorites/" + strconv.Itoa(favoriteID)
 	body, err := c.call("DELETE", u, nil)
@@ -192,6 +201,7 @@ func (c *User) DeleteFavorite(favoriteID int) (io.ReadCloser, error) {
 }
 
 // UpdateFavorite ...
+// https://developer.skroutz.gr/api/v3/favorites/#update-a-favorite
 func (c *User) UpdateFavorite(favoriteID int, sq *GetSearchQueryInput) (out *GetSingleFavoriteOutput, err error) {
 	u := "/favorites/" + strconv.Itoa(favoriteID)
 	u, err = addURLOptions(u, sq)

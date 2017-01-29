@@ -28,6 +28,7 @@ type GetFlagsOptionCollectionOutput struct {
 }
 
 // GetAllFlags retrieve all flags.
+// https://developer.skroutz.gr/api/v3/flag/#retrieve-all-flags
 func (c *FlagsContent) GetAllFlags() (out *GetFlagsOptionCollectionOutput, err error) {
 	u := "/flags"
 	body, err := c.call("GET", u, nil)
