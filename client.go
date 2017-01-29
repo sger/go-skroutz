@@ -47,7 +47,7 @@ func New(config *Config) *Client {
 	return client
 }
 
-// addURLOptions add the parameters for the url query.
+// addURLOptions adds the parameters for the url query.
 func addURLOptions(s string, opt interface{}) (string, error) {
 	v := reflect.ValueOf(opt)
 	if v.Kind() == reflect.Ptr && v.IsNil() {
@@ -68,7 +68,7 @@ func addURLOptions(s string, opt interface{}) (string, error) {
 	return u.String(), nil
 }
 
-// call api request GET, POST.
+// call api request GET, POST, DELETE, PATCH, PUT.
 func (c *Client) call(method string, path string, in interface{}) (io.ReadCloser, error) {
 	url := defaultBaseURL + path
 

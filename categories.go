@@ -5,8 +5,8 @@ import (
 	"strconv"
 )
 
-// Category request output.
-type Category struct {
+// GetCategoryOutput request output.
+type GetCategoryOutput struct {
 	ID                 int    `json:"id"`
 	Name               string `json:"name"`
 	ChildrenCount      int    `json:"children_count"`
@@ -21,57 +21,15 @@ type Category struct {
 	ManufacturerTitle  string `json:"manufacturer_title"`
 }
 
-// CategoriesCollection request output.
-type CategoriesCollection struct {
-	Categories []Category `json:"categories"`
-	Meta       Meta       `json:"meta"`
+// GetCategoriesCollectionOutput request output.
+type GetCategoriesCollectionOutput struct {
+	GetCategoryOutput []GetCategoryOutput `json:"categories"`
+	Meta              Meta                `json:"meta"`
 }
 
-// CategoryItem request output.
-type CategoryItem struct {
-	Categories Category `json:"category"`
-}
-
-// Specification request output.
-type Specification struct {
-	ID     float64  `json:"id"`
-	Name   string   `json:"name"`
-	Values []string `json:"values"`
-	Order  float64  `json:"order"`
-	Unit   string   `json:"unit"`
-}
-
-// SpecificationCollection request output.
-type SpecificationCollection struct {
-	Specification []Specification `json:"specifications"`
-}
-
-// SpecificationGroupCollection request output.
-type SpecificationGroupCollection struct {
-	Specification []Specification `json:"groups"`
-}
-
-// Favorite request output.
-type Favorite struct {
-	ID                   int    `json:"id"`
-	HaveIt               bool   `json:"have_it"`
-	UserID               int64  `json:"user_id"`
-	UserNotes            string `json:"user_notes"`
-	SkuID                int64  `json:"sku_id"`
-	CreatedAt            string `json:"created_at"`
-	UpdatedAt            string `json:"updated_at"`
-	GetAbsoluteThreshold string `json:"get_absolute_threshold"`
-}
-
-// SingleFavorite request output.
-type SingleFavorite struct {
-	Favorite Favorite `json:"favorite"`
-}
-
-// FavoritesCollection request output.
-type FavoritesCollection struct {
-	Favorite []Favorite `json:"favorites"`
-	Meta     Meta       `json:"meta"`
+// GetSingleCategoryOutput request output.
+type GetSingleCategoryOutput struct {
+	Category GetCategoryOutput `json:"category"`
 }
 
 // Categories client.
@@ -89,7 +47,7 @@ func NewCategories(config *Config) *Categories {
 }
 
 // GetCategories lists all categories.
-func (c *Categories) GetCategories() (out *CategoriesCollection, err error) {
+func (c *Categories) GetCategories() (out *GetCategoriesCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories", nil)
 	if err != nil {
 		return
@@ -101,7 +59,7 @@ func (c *Categories) GetCategories() (out *CategoriesCollection, err error) {
 }
 
 // GetSingleCategory retrieve a single category.
-func (c *Categories) GetSingleCategory(categoryID int) (out *CategoryItem, err error) {
+func (c *Categories) GetSingleCategory(categoryID int) (out *GetSingleCategoryOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID), nil)
 	if err != nil {
 		return
@@ -113,7 +71,7 @@ func (c *Categories) GetSingleCategory(categoryID int) (out *CategoryItem, err e
 }
 
 // GetParentCategory retrieve the parent of a category.
-func (c *Categories) GetParentCategory(categoryID int) (out *CategoryItem, err error) {
+func (c *Categories) GetParentCategory(categoryID int) (out *GetSingleCategoryOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/parent", nil)
 	if err != nil {
 		return
@@ -125,7 +83,7 @@ func (c *Categories) GetParentCategory(categoryID int) (out *CategoryItem, err e
 }
 
 // GetRootCategory retrieve the root category
-func (c *Categories) GetRootCategory() (out *CategoryItem, err error) {
+func (c *Categories) GetRootCategory() (out *GetSingleCategoryOutput, err error) {
 	body, err := c.call("GET", "/categories/root", nil)
 	if err != nil {
 		return
@@ -137,7 +95,7 @@ func (c *Categories) GetRootCategory() (out *CategoryItem, err error) {
 }
 
 // GetChildrenCategories list the children categories of a category.
-func (c *Categories) GetChildrenCategories(categoryID int) (out *CategoriesCollection, err error) {
+func (c *Categories) GetChildrenCategories(categoryID int) (out *GetCategoriesCollectionOutput, err error) {
 	body, err := c.call("GET", "/categories/"+strconv.Itoa(categoryID)+"/children", nil)
 	if err != nil {
 		return
