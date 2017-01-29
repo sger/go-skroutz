@@ -6,7 +6,7 @@
 ## Testing
 
 ```
-$ export DROPBOX_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
+$ export SKROUTZ_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
 $ go test -v
 ```
 
